@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <script type="module" src="./scripts/main.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Client Relationship Manager v1.0.0</h1>
+        <button id="new-client-bttn">New Client</button>
+        <form id="client-intake-form" class="hidden">
+            <input name="fName" type="text" placeholder="First Name">
+            <input name="lName" type="text" placeholder="Last Name">
+            <input name="company" type="text" placeholder="Company">
+            <input name="email" type="text" placeholder="Email">
+            <input name="phone" type="text" placeholder="Phone">
+            <select name="repName" id="">
+                <option value="RC">Rodrick</option>
+                <option value="KP">Kara</option>
+                <option value="KM">Kaitlyn</option>
+            </select>
+            <input type="submit">
+        </form>
+
+        <div id="client-list-div">
+            <h3>Client List</h3>
+            <select name="" id="client-list-select"></select>
+            <div>
+                <ul id="client-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="active-client-div">
+
+    </div>
+
+    <template id="client-template">
+        <div class="client">
+            <div class="close-bttn">&times;</div>
+            <div class="client-info">
+                <h3 client-name class="client-name"></h3>
+                <span client-company class="client-company"></span>
+                <span client-rep class="client-rep"></span>
+            </div>
+            <div>
+                <div class="client-outreach-list"></div>
+                <button>Add Outreach</button>
+            </div>
+        </div>
+    </template>
+
+    
+</body>
+</html>
