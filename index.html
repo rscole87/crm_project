@@ -40,15 +40,26 @@
 
     <template id="client-template">
         <div class="client">
-            <div class="close-bttn">&times;</div>
+            <div class="close-bttn"><button>&times;</button></div>
             <div class="client-info">
                 <h3 client-name class="client-name"></h3>
+                <span client-phone class="client-phone"></span>
+                <span client-email class="client-email"></span>
                 <span client-company class="client-company"></span>
                 <span client-rep class="client-rep"></span>
             </div>
             <div>
-                <div class="client-outreach-list"></div>
-                <button>Add Outreach</button>
+                <div id="recent-outreach-div" >
+                    <ul id="recent-outreach-list" class="client-outreach-list"></ul>
+                </div>
+                <form id="client-outreach-form" action="" class="hidden">
+                    <input type="radio" name="outreachtype" value="Email">Email</input>
+                    <input type="radio" name="outreachtype" value="Phone">Phone</input>
+                    <textarea name="message" id="" cols="30" rows="5"></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+                
+                <button class="outreach-bttn">Add Outreach</button>
             </div>
         </div>
     </template>
