@@ -8,11 +8,7 @@ export default class Client{
         this._email = email;
         this._phone = phone;
         this._rep = rep;
-        this._outreach = {
-            email: [],
-            phone: []
-        };
-        this._recentOutreach = [];
+        this._outreach = [];
     }
 
     get fullName() {
@@ -35,28 +31,12 @@ export default class Client{
         return this._rep
     }
 
-    get emailRecord() {
-        return this._outreach.email
+    get outreachRecord() {
+        return this._outreach
     }
 
-    set emailRecord(emailObj){
-        this._outreach.email.push(emailObj);
-    }
-
-    get phoneRecord() {
-        return this._outreach.phone
-    }
-
-    set phoneRecord(phoneObj){
-        this._outreach.phone.push(phoneObj);
-    }
-
-    get recentOutreach() {
-        return this._recentOutreach;
-    }
-
-    set recentOutreach(outreach) {
-        this._recentOutreach.push(outreach);
+    set outreachRecord(outreach) {
+        this._outreach.push(outreach);
     }
 
     get printClient() {

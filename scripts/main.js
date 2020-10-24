@@ -1,4 +1,5 @@
 import Client from "./Client.js"
+import Outreach from "./Outreach.js"
 let clientDatabase = [];
 let newClientBttn = document.getElementById("new-client-bttn");
 let clientIntakeForm = document.getElementById("client-intake-form");
@@ -92,19 +93,47 @@ clientListSelect.addEventListener("input", () =>{
 const displayRecentOutreach = (client) =>{
     let outreachList = document.getElementById("recent-outreach-list");
     outreachList.innerHTML = "";
-    if(client.recentOutreach.length > 0){
-        client.recentOutreach.forEach(ele =>{
+    if(client.outreachRecord.length > 0){
+        client.outreachRecord.forEach(outreach =>{
             let li = document.createElement("li");
-            li.appendChild(document.createTextNode(ele));
+            let type = outreach.type;
+            let date = outreach.date;
+            let time = outreach.time;
+            let message = outreach.message;
+            li.appendChild(document.createTextNode(`${type} - ${date} at ${time}: ${message}`));
             outreachList.appendChild(li);
         })
     }
 }
 
-const updateRecentOutreach = (client, outreachType, outreachMessage) =>{
-    client.recentOutreach.push(`${outreachType}: ${outreachMessage}`)
-} 
 
+const formattedTime = (date) =>{
+    let amOrPm;
+
+    if (date.getHours() < 12){
+        amOrPm = "am"
+    } else {
+        amOrPm = "pm"
+    }
+
+    return `${date.getHours()%12}:${timeMinutes(date)}${amOrPm}`
+}
+
+const timeMinutes = (date) =>{
+    let minutes = date.getMinutes()
+    if (minutes < 10){
+        return `0${minutes}`
+    } 
+    return minutes;
+}
+
+const formattedDate = (date) =>{
+    let year = date.getFullYear();
+    let month = date.getMonth();
+    let day = date.getDate();
+
+    return `${month}/${day}/${year}`;
+}
 
 const processClientOutreach = () =>{
     let form = document.getElementById("client-outreach-form");
@@ -112,19 +141,17 @@ const processClientOutreach = () =>{
     form.onsubmit = function (e){
         e.preventDefault();
         let outreachType = form.outreachtype.value;
-        let outreachMessage = form.message.value
+        let date = new Date;
+        console.log(date)
+        let outreachDate = formattedDate(date);
+        let outreachTime = formattedTime(date);
+        let outreachMessage = form.message.value;
+        let newOutreach = new Outreach(outreachType, outreachDate, outreachTime, outreachMessage)
 
         clientDatabase.forEach(client =>{
             if(clientListSelect.value === client.fullName){
-                if(outreachType === "Email"){
-                    client.emailRecord.push(outreachMessage);
-                    updateRecentOutreach(client, outreachType, outreachMessage)
-                    displayRecentOutreach(client)
-                } else if(outreachType === "Phone"){
-                    client.phoneRecord.push(outreachMessage);
-                    updateRecentOutreach(client, outreachType, outreachMessage)
-                    displayRecentOutreach(client)
-                }
+                client.outreachRecord.push(newOutreach);
+                displayRecentOutreach(client);
             }
         })
         form.reset();
