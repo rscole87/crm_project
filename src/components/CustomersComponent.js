@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import { ListGroup } from "reactstrap";
-import {Customer, CustomerLi} from "./Customer";
+import { RenderCustomerLi, RenderCustomerProfile } from "./Customer";
 import CUSTOMERLIST from "../shared/customerList";
 
-
-function CustomerProfile(props) {
-  return (
-    <div>
-      <h3>{props.name}</h3>
-    </div>
-  );
-}
 class CustomerSection extends Component {
   constructor(props) {
     super(props);
@@ -36,17 +28,10 @@ class CustomerSection extends Component {
       <section id="customer-section">
         <ListGroup>
           {customers.map((customer) => (
-            <CustomerLi name={customer.state.name} key={customer.state.id} customerObj={customer} setActiveCustomer={this.setActiveCustomer} />
+            <RenderCustomerLi name={customer.state.name} key={customer.state.id} customerObj={customer} setActiveCustomer={this.setActiveCustomer} />
           ))}
         </ListGroup>
-        <CustomerProfile 
-            name={this.state.activeCustomer.state.name} 
-            company={this.state.activeCustomer.state.company}
-            email={this.state.activeCustomer.state.email}
-            phone={this.state.activeCustomer.state.phone}
-            id={this.state.activeCustomer.state.id}
-            outreach={this.state.activeCustomer.state.outreach}
-            />
+        <RenderCustomerProfile customer={this.state.activeCustomer} />
       </section>
     );
   }
