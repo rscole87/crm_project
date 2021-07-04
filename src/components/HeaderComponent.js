@@ -48,7 +48,7 @@ class Header extends Component {
                 </NavItem>
               </Nav>
 
-              <NavbarText right>
+              <NavbarText>
                 <Button outline>
                   <i className="fa fa-sign-in fa-lg" /> Login
                 </Button>
