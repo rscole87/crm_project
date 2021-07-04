@@ -1,8 +1,53 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { ListGroup, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from "reactstrap";
-import { RenderCustomerLi, RenderCustomerProfile } from "./Customer";
+import { Customer, RenderCustomerLi, RenderCustomerProfile } from "./Customer";
 import CUSTOMERLIST from "../shared/customerList";
 
+function NewCustomerForm(props) {
+  const [name, setName] = useState();
+  const [company, setCompany] = useState();
+  const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.setCustomers(new Customer(name, company, email, phone));
+    setName("");
+    setCompany("");
+    setEmail("");
+    setPhone("");
+    props.toggleModal()
+  }
+
+  return (
+    <Modal isOpen={props.isModalOpen} toggle={props.toggleModal}>
+      <ModalHeader toggle={props.toggleModal}>New Customer</ModalHeader>
+      <ModalBody>
+        <Form onSubmit={handleSubmit}>
+          <FormGroup>
+            <Label htmlFor="name">Name</Label>
+            <Input type="text" id="name" name="name" value={name} onChange={e => setName(e.target.value)} />
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="company">Company</Label>
+            <Input type="text" id="company" name="company" value={company} onChange={e => setCompany(e.target.value)} />
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="phone">Phone</Label>
+            <Input type="text" id="phone" name="phone" value={phone} onChange={e => setPhone(e.target.value)} />
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="email">Email</Label>
+            <Input type="text" id="email" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
+          </FormGroup>
+          <Button type="submit" value="submit" color="primary">
+            Add Customer
+          </Button>
+        </Form>
+      </ModalBody>
+    </Modal>
+  );
+}
 class CustomerSection extends Component {
   constructor(props) {
     super(props);
@@ -10,14 +55,11 @@ class CustomerSection extends Component {
       isModalOpen: false,
       customerList: CUSTOMERLIST,
       activeCustomer: CUSTOMERLIST[0],
-      nameInput: "",
-      companyInput: "",
-      emailInput: "",
-      phoneInput: "",
     };
 
     this.setActiveCustomer = this.setActiveCustomer.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.setCustomers = this.setCustomers.bind(this);
   }
 
   setActiveCustomer(customer) {
@@ -33,6 +75,12 @@ class CustomerSection extends Component {
     });
   }
 
+  setCustomers(newCustomer){
+      this.setState({
+          customerList: [...this.state.customerList, newCustomer]
+      })
+  }
+
   render() {
     const customers = this.state.customerList;
 
@@ -45,27 +93,7 @@ class CustomerSection extends Component {
           ))}
         </ListGroup>
         <RenderCustomerProfile customer={this.state.activeCustomer} />
-
-        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-          <ModalHeader toggle={this.toggleModal}>New Customer</ModalHeader>
-          <ModalBody>
-            <Form onSubmit={this.handleLogin}>
-              <FormGroup>
-                <Label htmlFor="name">Name</Label>
-                <Input type="text" id="name" name="name" />
-              </FormGroup>
-              <FormGroup>
-                <Label htmlFor="phone">Phone</Label>
-                <Input type="text" id="phone" name="phone" />
-              </FormGroup>
-              <FormGroup>
-                <Label htmlFor="email">Email</Label>
-                <Input type="text" id="email" name="email" />
-              </FormGroup>
-              <Button type="submit" value="submit" color="primary">Add Customer</Button>
-            </Form>
-          </ModalBody>
-        </Modal>
+        <NewCustomerForm toggleModal={this.toggleModal} isModalOpen={this.state.isModalOpen} setCustomers={this.setCustomers} customerList={this.state.customerList}/>
       </section>
     );
   }
