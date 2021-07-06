@@ -1,6 +1,6 @@
 import React, {useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from "reactstrap";
-import { Customer } from "./Customer";
+import { Customer } from "../shared/Customer";
 
 export function NewCustomerForm(props) {
   const [name, setName] = useState();

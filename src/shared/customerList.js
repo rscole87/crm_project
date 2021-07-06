@@ -1,4 +1,4 @@
-import { Customer } from "../components/Customer";
+import { Customer } from "./Customer";
 
 const CUSTOMERLIST = [
     new Customer('Bill Gates', 'Microsoft', 'bill@microsoft.com', '555-555-5555'),
