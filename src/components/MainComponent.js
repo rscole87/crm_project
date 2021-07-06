@@ -7,7 +7,12 @@ function Main() {
   return (
     <>
       <Header />
-      <CustomerSection />
+      <Switch>
+        <Route exact path="/home" />
+        <Route exact path="/customers" component={CustomerSection} />
+        <Route exact path="/contactus" />
+        <Redirect to="/home" />
+      </Switch>
     </>
   );
 }
