@@ -1,11 +1,9 @@
-#customer-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 30px;
-}
-
 .profile-heading .company-heading {
   color: #949494;
+}
+
+.client-profile {
+  background-color: rgba(241, 241, 241, 0.288);
+  border-radius: 10px;
 }
 /*# sourceMappingURL=style.css.map */
