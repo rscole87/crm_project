@@ -99,10 +99,9 @@ export class CustomerProfile extends Component {
       <>
         <div className="client-profile p-4">
           <div className="profile-heading">
-            <h3>{this.props.customer.name}</h3>
-            <h5 className="company-heading">{this.props.customer.company}</h5>
-            <p>{this.props.customer.email}</p>
-            <p>{this.props.customer.phone}</p>
+            <h3>{this.props.customer.name}</h3> <h5 className="company-heading">{this.props.customer.company}</h5>
+            <p>Email: {this.props.customer.email}</p>
+            <p>Phone: {this.props.customer.phone}</p>
           </div>
           <div className="row">
             <div className="col col-sm-6">
