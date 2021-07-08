@@ -1,9 +1,13 @@
-.profile-heading .company-heading {
-  color: #949494;
+#customer-section {
+  background-color: rgba(241, 241, 241, 0.288);
 }
 
-.client-profile {
-  background-color: rgba(241, 241, 241, 0.288);
+#customer-section .client-profile {
   border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.753);
+}
+
+#customer-section .client-profile .profile-heading .company-heading {
+  color: #949494;
 }
 /*# sourceMappingURL=style.css.map */

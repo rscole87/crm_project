@@ -1,5 +1,7 @@
-import React from "react";
+import { render } from "@testing-library/react";
+import React, { Component, useState } from "react";
 import { ListGroupItem, Button } from "reactstrap";
+import { NewOutreachForm } from "./NewOutreachForm";
 
 export function RenderCustomerLi(props) {
   return (
@@ -16,10 +18,8 @@ function RenderPhoneCalls({ outreach }) {
     return (
       <>
         {phoneCalls.map((call, idx) => (
-          <li key={idx}>
-            {call.date}
-            {call.time}
-            {call.message}
+          <li key={idx} className="outreach-entry">
+            {call.date} - {call.message}
           </li>
         ))}
       </>
@@ -37,9 +37,7 @@ function RenderEmails({ outreach }) {
       <>
         {emails.map((email, idx) => (
           <li key={idx}>
-            {email.date}
-            {email.time}
-            {email.message}
+            {email.date} - {email.message}
           </li>
         ))}
       </>
@@ -49,37 +47,87 @@ function RenderEmails({ outreach }) {
   return <div></div>;
 }
 
-export function CustomerProfile(props) {
-  return (
-    <>
-      <div className="client-profile p-4">
-        <div className="profile-heading">
-          <h3>{props.customer.name}</h3>
-          <h5 className="company-heading">{props.customer.company}</h5>
-          <p>{props.customer.email}</p>
-          <p>{props.customer.phone}</p>
-        </div>
-        <div className="row">
-          <div className="col col-sm-6">
-            <div className="outreach-heading">
-              <h5>Phone Calls</h5>
-              <Button onClick={props.customer.addCall}>
-                + <i className="fa fa-phone fa-lg" />
-              </Button>
-            </div>
-            <RenderPhoneCalls outreach={props.customer.outreach} />
+export class CustomerProfile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalOpen: false,
+      messageType: null,
+      message: "",
+      context: "",
+    };
+    this.toggleModal = this.toggleModal.bind(this);
+    this.setContext = this.setContext.bind(this);
+    this.setMessage = this.setMessage.bind(this);
+    this.addCall = this.addCall.bind(this);
+    this.addEmail = this.addEmail.bind(this);
+  }
+
+  toggleModal(type) {
+    this.setState({ isModalOpen: !this.state.isModalOpen });
+    this.setState({ messageType: type });
+  }
+
+  setMessage(message) {
+    this.setState({ message: message });
+  }
+
+  setContext(context) {
+    this.setState({ context: context });
+  }
+
+  addCall(message, context) {
+    let messageObj = {
+      message: message,
+      context: context,
+      date: new Intl.DateTimeFormat("en-US", { year: "numeric", month: "short", day: "2-digit" }).format(new Date(Date.parse(new Date().toISOString()))),
+    };
+    this.props.customer.outreach.phone.push(messageObj);
+  }
+
+  addEmail(message, context) {
+    let messageObj = {
+      message: message,
+      context: context,
+      date: new Intl.DateTimeFormat("en-US", { year: "numeric", month: "short", day: "2-digit" }).format(new Date(Date.parse(new Date().toISOString()))),
+    };
+    this.props.customer.outreach.email.push(messageObj);
+  }
+
+  render() {
+    return (
+      <>
+        <div className="client-profile p-4">
+          <div className="profile-heading">
+            <h3>{this.props.customer.name}</h3>
+            <h5 className="company-heading">{this.props.customer.company}</h5>
+            <p>{this.props.customer.email}</p>
+            <p>{this.props.customer.phone}</p>
           </div>
-          <div className="col col-sm-6">
-            <div className="outreach-heading">
-              <h5>Emails</h5>
-              <Button onClick={props.customer.addEmail}>
-                + <i className="fa fa-envelope" />
-              </Button>
+          <div className="row">
+            <div className="col col-sm-6">
+              <div className="outreach-heading">
+                <h5>Phone Calls</h5>
+                <Button onClick={() => this.toggleModal("phone")}>
+                  + <i className="fa fa-phone fa-lg" />
+                </Button>
+              </div>
+              <RenderPhoneCalls outreach={this.props.customer.outreach} />
             </div>
-            <RenderEmails outreach={props.customer.outreach} />
+            <div className="col col-sm-6">
+              <div className="outreach-heading">
+                <h5>Emails</h5>
+                <Button onClick={() => this.toggleModal("email")}>
+                  + <i className="fa fa-envelope" />
+                </Button>
+              </div>
+              <RenderEmails outreach={this.props.customer.outreach} />
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+
+        <NewOutreachForm isModalOpen={this.state.isModalOpen} toggleModal={this.toggleModal} message={this.state.message} setMessage={this.setMessage} context={this.state.context} setContext={this.setContext} messageType={this.state.messageType} addCall={this.addCall} addEmail={this.addEmail} customer={this.props.customer} />
+      </>
+    );
+  }
 }

@@ -1,11 +1,15 @@
+#customer-section {
+    background-color: rgba(241, 241, 241, 0.288);
 
-.profile-heading{
-    .company-heading{
-        color: rgb(148, 148, 148);
+    .client-profile {
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.753);
+    
+      .profile-heading {
+        .company-heading {
+          color: rgb(148, 148, 148);
+        }
+      }
     }
 }
 
-.client-profile{
-    background-color: rgba(241, 241, 241, 0.288);
-    border-radius: 10px;
-}

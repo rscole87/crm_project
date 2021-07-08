@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./HeaderComponent";
-import CustomerSection from "./CustomersComponent";
+import CustomerSection from "./CustomerSection";
 import { Home } from "./HomeComponent";
 import { Contact } from "./ContactComponent";
 

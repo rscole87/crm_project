@@ -11,11 +11,4 @@ export class Customer {
     };
   }
 
-  addCall() {
-    console.log("call added");
-  }
-
-  addEmail() {
-    console.log("email added");
-  }
 }
