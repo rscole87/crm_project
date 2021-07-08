@@ -16,13 +16,13 @@ function RenderPhoneCalls({ outreach }) {
   if (outreach.phone) {
     phoneCalls = outreach.phone;
     return (
-      <>
+      <ul>
         {phoneCalls.map((call, idx) => (
           <li key={idx} className="outreach-entry">
             {call.date} - {call.message}
           </li>
         ))}
-      </>
+      </ul>
     );
   }
 
@@ -34,13 +34,13 @@ function RenderEmails({ outreach }) {
   if (outreach.email) {
     emails = outreach.email;
     return (
-      <>
+      <ul>
         {emails.map((email, idx) => (
-          <li key={idx}>
+          <li key={idx} className="outreach-entry">
             {email.date} - {email.message}
           </li>
         ))}
-      </>
+      </ul>
     );
   }
 
@@ -106,7 +106,7 @@ export class CustomerProfile extends Component {
           </div>
           <div className="row">
             <div className="col col-sm-6">
-              <div className="outreach-heading">
+              <div className="outreach-heading mt-5 pb-3" >
                 <h5>Phone Calls</h5>
                 <Button onClick={() => this.toggleModal("phone")}>
                   + <i className="fa fa-phone fa-lg" />
@@ -115,7 +115,7 @@ export class CustomerProfile extends Component {
               <RenderPhoneCalls outreach={this.props.customer.outreach} />
             </div>
             <div className="col col-sm-6">
-              <div className="outreach-heading">
+              <div className="outreach-heading mt-5 pb-3">
                 <h5>Emails</h5>
                 <Button onClick={() => this.toggleModal("email")}>
                   + <i className="fa fa-envelope" />

@@ -10,4 +10,8 @@
 #customer-section .client-profile .profile-heading .company-heading {
   color: #949494;
 }
+
+#customer-section .client-profile ul {
+  list-style: none;
+}
 /*# sourceMappingURL=style.css.map */
