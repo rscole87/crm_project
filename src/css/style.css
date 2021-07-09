@@ -5,13 +5,29 @@
 #customer-section .client-profile {
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.753);
+  -webkit-box-shadow: 10px 5px 25px 5px rgba(180, 180, 180, 0.233);
+          box-shadow: 10px 5px 25px 5px rgba(180, 180, 180, 0.233);
 }
 
 #customer-section .client-profile .profile-heading .company-heading {
-  color: #949494;
+  color: #0fa094;
 }
 
 #customer-section .client-profile ul {
   list-style: none;
+}
+
+#customer-section .client-profile .outreach-area {
+  border-radius: 10px;
+  background-color: rgba(241, 241, 241, 0.288);
+}
+
+#home-heading {
+  font-size: 5rem;
+}
+
+.call-to-action {
+  font-size: 2.3rem;
+  color: #0fa094;
 }
 /*# sourceMappingURL=style.css.map */

@@ -98,14 +98,14 @@ export class CustomerProfile extends Component {
     return (
       <>
         <div className="client-profile p-4">
-          <div className="profile-heading">
+          <div className="profile-heading pb-3">
             <h3>{this.props.customer.name}</h3> <h5 className="company-heading">{this.props.customer.company}</h5>
             <p>Email: {this.props.customer.email}</p>
             <p>Phone: {this.props.customer.phone}</p>
           </div>
           <div className="row">
-            <div className="col col-sm-6">
-              <div className="outreach-heading mt-5 pb-3" >
+            <div className="outreach-area col col-sm-6">
+              <div className="outreach-heading mt-3 pb-3" >
                 <h5>Phone Calls</h5>
                 <Button onClick={() => this.toggleModal("phone")}>
                   + <i className="fa fa-phone fa-lg" />
@@ -113,8 +113,8 @@ export class CustomerProfile extends Component {
               </div>
               <RenderPhoneCalls outreach={this.props.customer.outreach} />
             </div>
-            <div className="col col-sm-6">
-              <div className="outreach-heading mt-5 pb-3">
+            <div className="outreach-area col col-sm-6 ml-3">
+              <div className="outreach-heading mt-3 pb-3">
                 <h5>Emails</h5>
                 <Button onClick={() => this.toggleModal("email")}>
                   + <i className="fa fa-envelope" />

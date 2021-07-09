@@ -1,19 +1,36 @@
 #customer-section {
     background-color: rgba(241, 241, 241, 0.288);
+    
 
     .client-profile {
       border-radius: 10px;
       background-color: rgba(255, 255, 255, 0.753);
+      box-shadow: 10px 5px 25px 5px rgba(180, 180, 180, 0.233);
     
       .profile-heading {
         .company-heading {
-          color: rgb(148, 148, 148);
+          color: rgb(15, 160, 148);
         }
       }
       
       ul{
         list-style: none;
       }
+
+
+      .outreach-area{
+        border-radius: 10px;
+        background-color: rgba(241, 241, 241, 0.288);
+      }
     }
+}
+
+#home-heading{
+  font-size: 5rem;
+}
+
+.call-to-action{
+  font-size: 2.3rem;
+  color: rgb(15, 160, 148);
 }
 

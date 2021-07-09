@@ -24,7 +24,7 @@ class CustomerSection extends Component {
 
     return (
       <section id="customer-section">
-        <div className="container-fluid p-5">
+        <div className="container-fluid container-lg py-5">
           <div className="row">
             <div className="col col-sm-2">
               <ListGroup>
